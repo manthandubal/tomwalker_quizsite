@@ -5,6 +5,8 @@
 sqlite.db
 /mysite*
 /plan.txt
+/.pydevproject
+/.project
 /dist*
 *.egg-info*
 build*
