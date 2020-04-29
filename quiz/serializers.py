@@ -26,7 +26,7 @@ class QuizSerializer(serializers.ModelSerializer):
 class SittingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sitting
-        fields = '__all__'
+        fields = ('id', 'quiz', 'current_score', 'get_max_score', 'get_percent_correct')
         read_only_fields = ('__all__',)
 
 
@@ -39,21 +39,15 @@ class ProgressSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Progress
-        fields = '__all__'
+        fields = ('id', 'score', 'user', 'prev_exams_papers')
         read_only_fields = ('__all__',)
 
 class MarkingSerializer(serializers.ModelSerializer):
-    # prev_exams_papers = serializers.SerializerMethodField()
-
-    # def get_prev_exams_papers(self, obj):
-    #     ordered_queryset = Sitting.objects.filter(user_id=obj.user_id)
-    #     return SittingSerializer(ordered_queryset, many=True, context=self.context).data
-
+    end = serializers.DateTimeField(format="%B %d, %Y")
     model = Sitting
 
     def get_queryset(self, obj):
         queryset = Sitting.objects.filter(complete=True)
-
         user_filter = self.request.GET.get('user_filter')
         if user_filter:
             queryset = Sitting.objects.filter(user__username__icontains=user_filter, complete=True)
@@ -61,7 +55,7 @@ class MarkingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Sitting
-        fields = ('user', 'quiz', 'complete', 'current_score', 'get_percent_correct')
+        fields = ('user', 'quiz', 'end', 'get_percent_correct')
         read_only_fields = ('__all__',)
 
 class QuestionSerializer(serializers.ModelSerializer):
