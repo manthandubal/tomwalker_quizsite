@@ -10,3 +10,5 @@ db.sqlite3
 *.egg
 .project
 .pydevproject
+quiz/media/*
+quiz/uploads/*
