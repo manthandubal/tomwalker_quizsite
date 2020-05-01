@@ -7,11 +7,25 @@ except ImportError:
 
 from .views import QuizListView, CategoriesListView, \
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList, \
-    QuizMarkingDetail, QuizDetailView, QuizTake, UserFormView, QuizList, \
-    QuestionList, CategoryList, ProgressList, MarkingList
+    QuizMarkingDetail, QuizDetailView, QuizTake, QuizList, \
+    QuestionList, CategoryList, ProgressList, MarkingList, UserRegistrationFormView, \
+    UserLoginFormView, UserLogoutView
 
 
 urlpatterns = [    
+
+    url(r'^register/$', 
+        view=UserRegistrationFormView.as_view(), 
+        name='register'),
+
+    url(r'^login/$', 
+        view=UserLoginFormView.as_view(), 
+        name='login'),
+
+    url(r'^logout/$', 
+        view=UserLogoutView.as_view(), 
+        name='logout'),
+
     url(r'^list/$',
         view=QuizList.as_view(),
         name='quiz_list_index'),

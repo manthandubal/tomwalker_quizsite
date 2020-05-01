@@ -15,10 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from quiz.views import UserFormView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name='admin_page'),
 	url(r'^quiz/', include('quiz.urls')),
-    url(r'^register/', view=UserFormView.as_view(), name='register'),
 ]
