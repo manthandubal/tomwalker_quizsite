@@ -9,7 +9,7 @@ from .views import QuizListView, CategoriesListView, \
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList, \
     QuizMarkingDetail, QuizDetailView, QuizTake, QuizList, \
     QuestionList, CategoryList, ProgressList, MarkingList, UserRegistrationFormView, \
-    UserLoginFormView, UserLogoutView
+    UserLoginFormView, UserLogoutView, ContinueQuizTake
 
 
 urlpatterns = [    
@@ -79,7 +79,9 @@ urlpatterns = [
         view=QuizTake.as_view(),
         name='quiz_question'),
 
-    
+    url(r'^(?P<quiz_name>[\w-]+)/take/(?P<pk>[\d.]+)/$',
+        view=ContinueQuizTake.as_view(),
+        name='continue_quiz_question'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -4,7 +4,8 @@
 
 {% block content %}
 <h2>{% trans "List of quizzes" %}</h2>
-    {% if quiz_list %}
+	{% if quiz_list %}
+	
 		<table class="table table-bordered table-striped">
 
 		  <thead>
@@ -32,12 +33,13 @@
 				</a>
 			</tr>
 
-        {% endfor %}
+		{% endfor %}
 		  </tbody>
-
 		</table>
 
 	{% else %}
         <p>{% trans "There are no available quizzes" %}.</p>
-    {% endif %}
+	{% endif %}
+	
+
 {% endblock %}
