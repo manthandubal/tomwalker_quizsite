@@ -11,12 +11,9 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.views import generic
 from django.views.generic import View
-from .forms import UserForm
+from django.contrib.auth.models import User
+from .forms import UserRegistrationForm, UserLoginForm
 from rest_framework.response import Response
-# from rest_framework import status
-# from rest_framework import viewsets
-# from rest_framework import permissions
-# from rest_framework_json_api.parsers import JSONParser
 from rest_framework.views import APIView
 from .serializers import QuestionSerializer, QuizSerializer, SubCategorySerializer, CategorySerializer, \
     ProgressSerializer, MarkingSerializer

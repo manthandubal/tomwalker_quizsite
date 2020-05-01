@@ -10,6 +10,47 @@
 <!-- styles -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+<style>
+	nav {
+		display: flex; 
+		margin-top: 1.5rem ; 
+		margin-bottom: 1.5rem; 
+		min-height: 50px;
+	}
+    nav ul {
+        background-color: #dddddd;
+        overflow: hidden;
+        background-color: #333;
+		position: fixed;
+        top: 0;
+		left: 0;
+		padding-left:0px;
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        padding: 8px;
+        float: left;
+        border-right: 1px solid #bbb;
+    }
+    nav ul li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    nav ul li:last-child {
+        border-right: none;
+    }
+    nav ul li a:hover {
+        background-color: #111;
+		text-decoration: none;
+		color: white;
+    }
+</style>
+
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -23,6 +64,39 @@
 <!-- Before the quiz content -->
 
 <div class="container">
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'quiz_index' %} ">Quiz Home</a>
+            </li>
+			
+			<li>
+                <a href="{% url 'quiz_category_list_all' %} ">Quiz Categories</a>
+            </li>			
+
+        {% if user.is_authenticated %}
+
+            <li style="float:right;">
+                <a href="">Hello {{ user.username }}</a>
+            </li>
+            <li style="float:right;">
+                <a href="{% url 'logout' %}">Logout</a>
+            </li>
+			
+			<li>
+                <a href="{% url 'quiz_marking' %} ">Marking</a>
+            </li>
+			
+			<li>
+                <a href="{% url 'quiz_progress' %} ">Progress</a>
+            </li>
+        {% else %}
+            <li style="float:right;">
+                <a href="{% url 'login' %} ">Login</a> 
+            </li>
+        {% endif %}
+        </ul>
+    </nav>
 
 {% block content %}
 

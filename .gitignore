@@ -12,3 +12,4 @@ db.sqlite3
 .pydevproject
 quiz/media/*
 quiz/uploads/*
+quisite/settings.py
